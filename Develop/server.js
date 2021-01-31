@@ -4,8 +4,8 @@
 // ==============================================================================
 
 var express = require("express");
-const fs = require('fs');
-const path = require('path');
+// const fs = require('fs');
+// const path = require('path');
 // ==============================================================================
 // EXPRESS CONFIGURATION
 // This sets up the basic properties for our express server
@@ -24,17 +24,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-let notes = [];
+// let notes = [];
 
-fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8' , (err, data) => {
-  if (err) {
-    console.error(err)
-    return
-  }
-  notes = data;
-  notes.push({title:"my test", text:"my text"})
-  console.log(notes);
-})
+// fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8' , (err, data) => {
+//   if (err) {
+//     console.error(err)
+//     return
+//   }
+//   notes = JSON.parse(data);
+//   // notes.push({title:"my test", text:"my text"})
+//   console.log(notes);
+// })
 
 // ================================================================================
 // ROUTER
@@ -42,7 +42,7 @@ fs.readFile(path.join(__dirname, "./db/db.json"), 'utf8' , (err, data) => {
 // These routes give our server a "map" of how to respond when users visit or request data from various URLs.
 // ================================================================================
 
-// require("./routes/apiRoutes")(app);
+require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
 // =============================================================================
