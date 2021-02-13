@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const { v4 : uuidv4 } = require('uuid');
 
 module.exports = function(app) {
     // API GET Requests
@@ -29,6 +30,33 @@ module.exports = function(app) {
         console.log(notes);
       })
       res.json(notes);
+    });
+//add post and delete
+
+// //new object
+//   {
+//     id: <insertId></insertId>
+//     title: req.body.title
+//     text: req.body.text
+//   }
+
+    app.post("/api/notes", function(req, res) {
+      let note = {
+        id: uuidv4(),
+            title: req.body.title,
+            text: req.body.text
+      };
+      notes.push(note);
+      fs.writeFile(path.join(__dirname, "../db/db.json"), JSON.stringify(notes) , (err) => {
+        if (err) {
+          console.error(err)
+          return
+        }
+      
+        // notes.push({title:"my test", text:"my text"})
+        console.log(notes);
+        res.send(200);
+      })
     });
 }
 
