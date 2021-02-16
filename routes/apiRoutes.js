@@ -58,6 +58,12 @@ module.exports = function(app) {
         res.send(200);
       })
     });
-}
+
+    app.delete("/api/notes", function(req, res) {
+      note.id.length = 0;
+      // Empty out the arrays of data
+      res.json({ ok: true });
+    });
+};
 
 //add post and delete
